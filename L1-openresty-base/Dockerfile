@@ -188,8 +188,8 @@ RUN apk add --no-cache --virtual .build-deps \
   openresty-${RESTY_VERSION}.tar.gz openresty-${RESTY_VERSION} \
   && apk del .build-deps \
   && mkdir -p /var/run/openresty \
-  && rm /etc/nginx/conf.d/default.conf 2> /dev/null \
-  && rm /etc/nginx/http.d/default.conf 2> /dev/null
+  && if [ -f /etc/nginx/http.d/default.conf ]; then rm /etc/nginx/conf.d/default.conf; fi \
+  && if [ -f /etc/nginx/conf.d/default.conf ]; then rm /etc/nginx/conf.d/default.conf; fi
 
 #    && ln -sf /usr/local/openresty/bin/openresty /usr/sbin/nginx
 #    && ln -sf /dev/stdout /usr/local/openresty/nginx/logs/access.log \

@@ -1,6 +1,8 @@
 # syntax=docker/dockerfile:1
 
-FROM openresty-base-fat
+ARG L2_IMAGE="openresty-base-fat"
+
+FROM ${L2_IMAGE}
 
 # set version label
 ARG BUILD_DATE

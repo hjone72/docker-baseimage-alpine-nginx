@@ -3,8 +3,9 @@
 
 ARG RESTY_IMAGE_BASE="alpine"
 ARG RESTY_IMAGE_TAG="3.21"
+ARG L1_IMAGE="openresty-base"
 
-FROM openresty-base
+FROM ${L1_IMAGE}
 
 LABEL maintainer="Evan Wies <evan@neomantra.net>"
 

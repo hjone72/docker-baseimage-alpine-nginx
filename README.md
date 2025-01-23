@@ -10,7 +10,24 @@
 | IRC | `#linuxserver.io` on irc.libera.chat |
 | Forum | [Discourse](https://discourse.linuxserver.io/) |
 
-A custom base image built with [Alpine Linux](https://alpinelinux.org), [nginx](https://nginx.org), and [s6-overlay](https://github.com/just-containers/s6-overlay).
+A custom base image built with [Alpine Linux](https://alpinelinux.org), OpenResty, and [s6-overlay](https://github.com/just-containers/s6-overlay).
+
+# Changes!
+This image uses the amazing work from LinuxServer.io and simply rips out nginx and replaces it with OpenResty. Everything has been kept to follow the linuxserver.io methods as much as possible.
+
+The process is:
+1. Create a first layer for the openresty container.
+    Changing the base image to use linuxserver.io alpine base. The Dockerfile is almost entirely coming from openresty, but has been merged.
+2. Second layer for the image.
+    This brings in the "fat" openresty modifications and is based from the layer 1 image.
+3. The final layer.
+    Uses the fat layer as a base and is entirely the linuxserver nginx container, except has nginx removed.
+
+Container includes:
+- a sample lua file.
+- a sample lua nginx block
+- adjust the nginx.conf to look for lua files
+
 
 - Support for using our base images in your own projects is provided on a Reasonable Endeavours basis, please see our [Support Policy](https://www.linuxserver.io/supportpolicy) for details.
 - There is no `latest` tag for any of our base images, by design. We often make breaking changes between versions, and we don't publish release notes like we do for the downstream images.

@@ -14,17 +14,15 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
       
     - name: Build L1 image
       run: docker build -t openresty-base -f L1-openresty-base/Dockerfile .
 
     - name: Build L2 image
-      run: docker build -t openresty-base-fat -f L2-openresty-fat/Dockerfile .
+      run: docker build -t openresty-base-fat --build-arg L1_IMAGE=openresty-base -f L2-openresty-fat/Dockerfile .
 
     - name: Build final image
-      run: docker build -t ${{ secrets.DOCKER_USERNAME }}/lscr_openresty:$(date +%s) .
+      run: docker build -t ${{ secrets.DOCKER_USERNAME }}/lscr_openresty:$(date +%s) --build-arg L2_IMAGE=openresty-base-fat .
 
     - name: Login to Docker Hub
       uses: docker/login-action@v2

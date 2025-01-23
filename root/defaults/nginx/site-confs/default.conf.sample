@@ -22,6 +22,12 @@ server {
         #auth_basic "Restricted";
         #auth_basic_user_file /config/nginx/.htpasswd;
 
+        default_type text/plain;
+        content_by_lua_block {
+            local hello = require "hello"
+            hello.greet("a Lua module")
+        }
+
         try_files $uri $uri/ /index.html /index.htm /index.php$is_args$args;
     }
 

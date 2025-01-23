@@ -6,3 +6,5 @@ mkdir -p \
     /config/{keys,php,www} \
     /config/log/{nginx,php} \
     /config/nginx/site-confs \
+    /config/nginx/lua \
+    /config/lua \

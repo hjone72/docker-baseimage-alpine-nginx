@@ -189,21 +189,21 @@ RUN apk add --no-cache --virtual .build-deps \
   && apk del .build-deps \
   && mkdir -p /var/run/openresty \
   && rm /etc/nginx/conf.d/default.conf 2> /dev/null \
-  && rm /etc/nginx/http.d/default.conf 2> /dev/null \
+  && rm /etc/nginx/http.d/default.conf 2> /dev/null
 
-  #    && ln -sf /usr/local/openresty/bin/openresty /usr/sbin/nginx
-  #    && ln -sf /dev/stdout /usr/local/openresty/nginx/logs/access.log \
-  #    && ln -sf /dev/stderr /usr/local/openresty/nginx/logs/error.log
+#    && ln -sf /usr/local/openresty/bin/openresty /usr/sbin/nginx
+#    && ln -sf /dev/stdout /usr/local/openresty/nginx/logs/access.log \
+#    && ln -sf /dev/stderr /usr/local/openresty/nginx/logs/error.log
 
-  # Add additional binaries into PATH for convenience
-  # ENV PATH=$PATH:/usr/local/openresty/luajit/bin:/usr/local/openresty/nginx/sbin:/usr/local/openresty/bin
+# Add additional binaries into PATH for convenience
+# ENV PATH=$PATH:/usr/local/openresty/luajit/bin:/usr/local/openresty/nginx/sbin:/usr/local/openresty/bin
 
-  # Copy nginx configuration files
-  # COPY nginx.conf /usr/local/openresty/nginx/conf/nginx.conf
-  # COPY nginx.vh.default.conf /etc/nginx/conf.d/default.conf
-  #
-  # CMD ["/usr/local/openresty/bin/openresty", "-g", "daemon off;"]
-  #
-  # # Use SIGQUIT instead of default SIGTERM to cleanly drain requests
-  # # See https://github.com/openresty/docker-openresty/blob/master/README.md#tips--pitfalls
-  # STOPSIGNAL SIGQUIT
+# Copy nginx configuration files
+# COPY nginx.conf /usr/local/openresty/nginx/conf/nginx.conf
+# COPY nginx.vh.default.conf /etc/nginx/conf.d/default.conf
+#
+# CMD ["/usr/local/openresty/bin/openresty", "-g", "daemon off;"]
+#
+# # Use SIGQUIT instead of default SIGTERM to cleanly drain requests
+# # See https://github.com/openresty/docker-openresty/blob/master/README.md#tips--pitfalls
+# STOPSIGNAL SIGQUIT
